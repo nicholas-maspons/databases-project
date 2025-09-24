@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Home</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome, {{ session['user'] }}</h1>
+        <nav>
+            <a href="/search_flights">Search Flights</a>
+            <a href="/view_flights">My Flights</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+</body>
+</html>

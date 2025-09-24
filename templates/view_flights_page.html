@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Flights</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <h2>My Purchased Flights</h2>
+    {% if flights %}
+    <table>
+        <tr>
+            <th>Ticket ID</th>
+            <th>Flight #</th>
+            <th>Departure</th>
+            <th>Arrival</th>
+            <th>Dep Time</th>
+            <th>Arr Time</th>
+            <th>Price</th>
+            <th>Rating</th>
+        </tr>
+        {% for f in flights %}
+        <tr>
+            <td>{{ f.id_number }}</td>
+            <td>{{ f.flight_number }}</td>
+            <td>{{ f.departure_airport }}</td>
+            <td>{{ f.arrival_airport }}</td>
+            <td>{{ f.departure_date_time.strftime('%Y-%m-%d %H:%M') if f.departure_date_time else '' }}</td>
+            <td>{{ f.arrival_date_time.strftime('%Y-%m-%d %H:%M') if f.arrival_date_time else '' }}</td>
+            <td>${{ "%.2f"|format(f.base_price) }}</td>
+            <td>
+                {% if f.rating_status == 'rate' %}
+                    <a href="{{ url_for('rate_flight_form',
+                        airline_name=f.airline_name,
+                        flight_number=f.flight_number,
+                        departure_date_time=f.departure_date_time) }}">Rate</a>
+                {% elif f.rating_status == 'already' %}
+                    Already Rated
+                {% elif f.rating_status == 'future' %}
+                    Can't Rate Yet
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>No flights found.</p>
+    {% endif %}
+    <br>
+    <a href="/customer_home">Back to Home</a>
+</body>
+</html>

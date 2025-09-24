@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upcoming Flights</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <h2>Upcoming Flights (Next 30 Days)</h2>
+    <table>
+        <tr>
+            <th>Flight No</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Departure</th>
+            <th>Arrival</th>
+            <th>Status</th>
+            <th>Airplane ID</th>
+            <th>Customers</th>
+        </tr>
+        {% for f in flights %}
+        <tr>
+            <td>{{ f.flight_number }}</td>
+            <td>{{ f.departure_airport }}</td>
+            <td>{{ f.arrival_airport }}</td>
+            <td>{{ f.departure_date_time }}</td>
+            <td>{{ f.arrival_date_time }}</td>
+            <td>{{ f.status_ }}</td>
+            <td>{{ f.airplane_id }}</td>
+            <td>
+                <a href="/staff/view_customers?flight_number={{ f.flight_number }}&departure_date_time={{ f.departure_date_time }}">View</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/staff_home">Back to Dashboard</a>
+</body>
+</html>

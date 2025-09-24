@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customers for Flight</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <h2>Customers for Flight {{ flight_number }}</h2>
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Ticket ID</th>
+            <th>Sold Price</th>
+        </tr>
+        {% for c in customers %}
+        <tr>
+            <td>{{ c.first_name }}</td>
+            <td>{{ c.last_name }}</td>
+            <td>{{ c.email }}</td>
+            <td>{{ c.id_number }}</td>
+            <td>{{ c.sold_price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/staff/view_flights">Back to Flights</a>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Home</title>
+</head>
+<body>
+    <header>
+        <h1>App Name</h1>
+        <nav>
+            <ul>
+                <li><a href="/signup">SIGN UP</a></li>
+                <li><a href="/login">LOG IN</a></li>
+            </ul>
+        </nav>
+    </header>
+    <form method="get" action="/">
+        <div class="dropdown">
+            <label for="source">From:</label>
+            <select name="source" id="source">
+                <option value="">Any</option>
+                {% for airport in airports %}
+                    <option value="{{ airport.airport_name }}" {% if selected_source == airport.airport_name %}selected{% endif %}>
+                        {{ airport.airport_name }} ({{ airport.city }})
+                    </option>
+                {% endfor %}
+            </select>
+            <label for="destination">To:</label>
+            <select name="destination" id="destination">
+                <option value="">Any</option>
+                {% for airport in airports %}
+                    <option value="{{ airport.airport_name }}" {% if selected_destination == airport.airport_name %}selected{% endif %}>
+                        {{ airport.airport_name }} ({{ airport.city }})
+                    </option>
+                {% endfor %}
+            </select>
+            <label for="depart_date">Departure Date:</label>
+            <input type="date" name="depart_date" id="depart_date" value="{{ selected_date or '' }}">
+            <button type="submit">Search</button>
+        </div>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Airline</th>
+                <th>Flight</th>
+                <th>To</th>
+                <th>From</th>
+                <th>Arrives</th>
+                <th>Departs</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for flight in flights %}
+            <tr>
+                <td>{{ flight.airline_name }}</td>
+                <td>{{ flight.flight_number }}</td>
+                <td>{{ flight.arrival_airport }}</td>
+                <td>{{ flight.departure_airport }}</td>
+                <td>{{ flight.arrival_date_time }}</td>
+                <td>{{ flight.departure_date_time }}</td>
+                <td>{{ flight.status_ }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

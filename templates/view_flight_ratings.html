@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flight Ratings</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <h2>Flight Ratings</h2>
+    {% for (flight_number, departure_date_time, avg_rating), ratings in grouped.items() %}
+        <h3>Flight {{ flight_number }} ({{ departure_date_time }}) - Average Rating: {{ avg_rating or 'N/A' }}</h3>
+        <table>
+            <tr>
+                <th>Customer Email</th>
+                <th>Rating</th>
+                <th>Comment</th>
+            </tr>
+            {% for r in ratings %}
+            <tr>
+                <td>{{ r.email }}</td>
+                <td>{{ r.rating }}</td>
+                <td>{{ r.comment }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endfor %}
+    <br>
+    <a href="/staff_home">Back to Dashboard</a>
+</body>
+</html>

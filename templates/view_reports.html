@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ticket Sales Report</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <h2>Ticket Sales Report</h2>
+    <form method="get">
+        <label for="filter">Filter:</label>
+        <select name="filter" id="filter" onchange="toggleCustomDates(this.value)">
+            <option value="">-- Select --</option>
+            <option value="last_month" {% if selected_filter == 'last_month' %}selected{% endif %}>Last Month</option>
+            <option value="last_year" {% if selected_filter == 'last_year' %}selected{% endif %}>Last Year</option>
+            <option value="custom" {% if selected_filter == 'custom' %}selected{% endif %}>Custom Range</option>
+        </select>
+        <span id="customDates" style="display: {% if selected_filter == 'custom' %}inline{% else %}none{% endif %};">
+            <label>From:</label>
+            <input type="date" name="start_date" value="{{ start_date or '' }}">
+            <label>To:</label>
+            <input type="date" name="end_date" value="{{ end_date or '' }}">
+        </span>
+        <button type="submit">Apply</button>
+    </form>
+    <table>
+        <tr><th>Year</th><th>Month</th><th>Tickets Sold</th></tr>
+        {% for row in data %}
+        <tr>
+            <td>{{ row.year }}</td>
+            <td>{{ row.month }}</td>
+            <td>{{ row.tickets_sold }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <script>
+        function toggleCustomDates(val) {
+            document.getElementById('customDates').style.display = (val === 'custom') ? 'inline' : 'none';
+        }
+    </script>
+    <br>
+    <a href="/staff_home">Back to Dashboard</a>
+</body>
+</html>

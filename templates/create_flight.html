@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Flight</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <h2>Create New Flight</h2>
+    <form method="post">
+        <label>Flight Number:</label>
+        <input type="text" name="flight_number" required><br>
+        <label>Departure Airport:</label>
+        <input type="text" name="departure_airport" required><br>
+        <label>Arrival Airport:</label>
+        <input type="text" name="arrival_airport" required><br>
+        <label>Departure Time:</label>
+        <input type="datetime-local" name="departure_time" required><br>
+        <label>Arrival Time:</label>
+        <input type="datetime-local" name="arrival_time" required><br>
+        <label>Airplane ID:</label>
+        <input type="text" name="airplane_id" required><br>
+        <label>Base Price:</label>
+        <input type="number" step="0.01" name="base_price" required><br>
+        <label>Status:</label>
+        <select name="status">
+            <option>On Time</option>
+            <option>Delayed</option>
+            <option>Cancelled</option>
+        </select><br><br>
+        <input type="submit" value="Create Flight">
+    </form>
+    <hr>
+    <h3>Upcoming Flights (Next 30 Days)</h3>
+    <table>
+        <tr>
+            <th>Flight No</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Departure</th>
+            <th>Arrival</th>
+            <th>Status</th>
+        </tr>
+        {% for f in flights %}
+        <tr>
+            <td>{{ f.flight_number }}</td>
+            <td>{{ f.departure_airport }}</td>
+            <td>{{ f.arrival_airport }}</td>
+            <td>{{ f.departure_date_time }}</td>
+            <td>{{ f.arrival_date_time }}</td>
+            <td>{{ f.status_ }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/staff_home">Back to Dashboard</a>
+</body>
+</html>

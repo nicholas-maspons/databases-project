@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Change Flight Status</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <h2>Change Flight Status</h2>
+    <form method="post">
+        <label>Flight:</label>
+        <select name="flight_number">
+            {% for f in flights %}
+            <option value="{{ f.flight_number }}">{{ f.flight_number }} ({{ f.departure_date_time }})</option>
+            {% endfor %}
+        </select>
+        <label>Departure Time:</label>
+        <select name="departure_time">
+            {% for f in flights %}
+            <option value="{{ f.departure_date_time }}">{{ f.departure_date_time }}</option>
+            {% endfor %}
+        </select>
+        <label>New Status:</label>
+        <select name="new_status">
+            <option>On Time</option>
+            <option>Delayed</option>
+            <option>Cancelled</option>
+        </select>
+        <input type="submit" value="Change Status">
+    </form>
+    <hr>
+    <h3>All Upcoming Flights</h3>
+    <table>
+        <tr>
+            <th>Flight No</th>
+            <th>Departure Time</th>
+            <th>Status</th>
+        </tr>
+        {% for f in flights %}
+        <tr>
+            <td>{{ f.flight_number }}</td>
+            <td>{{ f.departure_date_time }}</td>
+            <td>{{ f.status_ }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/staff_home">Back to Dashboard</a>
+</body>
+</html>

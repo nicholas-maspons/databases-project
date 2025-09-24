@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Airplane</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <h2>Add New Airplane</h2>
+    <form method="post">
+        <label>Airplane ID:</label>
+        <input type="text" name="airplane_id" required><br>
+        <label>Seat Count:</label>
+        <input type="number" name="seat_count" required><br>
+        <label>Manufacturer:</label>
+        <input type="text" name="manufacturer" required><br>
+        <label>Age:</label>
+        <input type="number" name="age" required><br>
+        <input type="submit" value="Add Airplane">
+    </form>
+    <hr>
+    <h3>All Airplanes Owned by Airline</h3>
+    <table>
+        <tr>
+            <th>Airplane ID</th>
+            <th>Seat Count</th>
+            <th>Manufacturer</th>
+            <th>Age</th>
+        </tr>
+        {% for a in airplanes %}
+        <tr>
+            <td>{{ a.airplane_id }}</td>
+            <td>{{ a.seat_count }}</td>
+            <td>{{ a.manufacturer }}</td>
+            <td>{{ a.age }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/staff_home">Back to Dashboard</a>
+</body>
+</html>

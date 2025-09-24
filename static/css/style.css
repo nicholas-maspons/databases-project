@@ -1,0 +1,152 @@
+:root {
+    --bg-color: #e7f0f8;
+    --white: #fff;
+    --main-color: #0b3b55;
+    --not-main-color: #1b5172;
+}
+
+* {
+    font-family: Helvetica;
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+}
+
+header {
+    background-color: var(--not-main-color);
+
+    height: 75px;
+    margin-bottom: 50px;
+    padding: 0 24px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    color: var(--white);
+    font-size: 32px;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    gap: 50px;
+}
+
+a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 16;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+table {
+    color: var(--white);
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+thead tr:nth-child(odd) {
+    background-color: var(--main-color);
+}
+
+thead th:first-child {
+    border-top-left-radius: 10px;
+}
+
+thead th:last-child {
+    border-top-right-radius: 10px;
+}
+
+tbody tr:nth-of-type(odd) {
+    background-color: var(--not-main-color);
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: var(--main-color);
+}
+
+tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+th {
+    text-align: center;
+    font-weight: normal;
+
+    width: 150px;
+    height: 50px;
+}
+
+td {
+    text-align: center;
+
+    width: 150px;
+    height: 50px;
+}
+
+.container {
+    width: 500px;
+    height: 500px;
+
+    margin: 0 auto;
+    padding: 0 50px;
+
+    background-color: var(--not-main-color);
+    border-radius: 15px;
+}
+
+.container h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 25%
+}
+
+.container label {
+    color: var(--white);
+    display: block;
+}
+
+.container input {
+    width: 100%;
+    height: 35px;
+
+    margin-bottom: 15px;
+    padding-left: 5px;
+    border: none;
+    border-radius: 10px;
+}
+
+button {
+    background-color: var(--main-color);
+    color: var(--white);
+    display: block;
+    margin: 25px auto 0 auto;
+
+    width: 35%;
+    height: 35px;
+    border: none;
+    border-radius: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+}

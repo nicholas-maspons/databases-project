@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Flights</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <h2>Search for a flight</h2>
+    <form method="get" action="/search_flights">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <label for="category">Category:</label>
+        <select id="category" name="category">
+            <option value="">All Categories</option>
+            <option value="departure_airport">Departure Airport</option>
+            <option value="arrival_airport">Arrival Airport</option>
+            <option value="departure_date_time">Departure Date</option>
+            <option value="arrival_date_time">Arrival Date</option>
+        </select>
+        <button type="submit">Search</button>
+    </form>
+    <div>
+        {% if flights %}
+        <h2>Results</h2>
+        <table>
+            <tr>
+                <th>Flight #</th>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th>Dep Date</th>
+                <th>Arr Date</th>
+                <th>Price</th>
+                <th>Purchase</th>
+            </tr>
+            {% for f in flights %}
+            <tr>
+                <td>{{ f.flight_number }}</td>
+                <td>{{ f.departure_airport }}</td>
+                <td>{{ f.arrival_airport }}</td>
+                <td>{{ f.departure_date_time }}</td>
+                <td>{{ f.arrival_date_time }}</td>
+                <td>{{ f.base_price }}</td>
+                <td>
+                    <form method="POST" action="/purchase">
+                        <input type="hidden" name="flight_number" value="{{ f.flight_number }}">
+                        <button type="submit">Purchase</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% elif request.args %}
+        <p>No matching flights found.</p>
+        {% endif %}
+    </div>
+    <a href="/customer_home">Back to Home</a>
+</body>
+</html>

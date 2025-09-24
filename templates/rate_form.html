@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rate Flight</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <h2>Rate Flight {{ airline_name }} {{ flight_number }}</h2>
+    <form method="POST" action="/submit_rating">
+        <input type="hidden" name="airline_name" value="{{ airline_name }}">
+        <input type="hidden" name="flight_number" value="{{ flight_number }}">
+        <input type="hidden" name="departure_date_time" value="{{ departure_date_time }}">
+        <label>Rating (1–5):</label>
+        <input type="number" name="rating" min="1" max="5" required><br><br>
+        <label>Comment:</label><br>
+        <textarea name="comment" rows="4" cols="50"></textarea><br><br>
+        <input type="submit" value="Submit Rating">
+    </form>
+    <a href="/view_flights">Back to My Flights</a>
+</body>
+</html>
